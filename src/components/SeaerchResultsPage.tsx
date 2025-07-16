@@ -22,11 +22,15 @@ const SearchResultsPage : React.FC<SearchResultsPageProps> = ({searchResults}) =
                     <div key={r.id}>
                         <h1>{r.name.charAt(0).toUpperCase()}{r?.name.slice(1)}</h1>
                         <img src={r?.image}/>
-                        <h4>Common locations</h4>
-                        <ul>
-                            {r.common_locations?.map(location => (<li>{location}</li>))}
-                        </ul>
-                        <h4>Description</h4>
+                        <h2>Common locations</h2>
+                        {r.common_locations && r.common_locations.length > 0 ? (
+                            <ul>
+                                {r.common_locations?.map(location => (<li>{location}</li>))}
+                            </ul>
+                        ): (
+                            <h4>None</h4>
+                        )}
+                        <h2>Description</h2>
                         <p>{r.description}</p>
                         <hr/>
                     </div>

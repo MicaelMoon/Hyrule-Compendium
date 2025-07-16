@@ -17,33 +17,38 @@ const MainPage: React.FC = () =>{
                         <button onClick={() => getSearchResults(searchTerm)}>
                             Search
                         </button>
+
+                        <select id='connom-locations-selection'>
+                            <option value="">All</option>
+                        </select>
                     </form>
                 </div>
             </div>
+
             <SearchResultsPage searchResults={searchResults}/>
         </div>
     )
 
     
-async function getSearchResults(searchEntry: string){
-    try{
-        const url : string = "https://botw-compendium.herokuapp.com/api/v3/compendium";
-        const response : any = await fetch(url);
+    async function getSearchResults(searchEntry: string){
+        try{
+            const url : string = "https://botw-compendium.herokuapp.com/api/v3/compendium";
+            const response : any = await fetch(url);
 
-        if(!response.ok){
-            throw new Error(`Http error! status: ${response.status}`);
+            if(!response.ok){
+                throw new Error(`Http error! status: ${response.status}`);
+            }
+
+            const allData = await response.json();
+            const results = allData.data.filter((entry: any) =>
+                entry.name.toLowerCase().includes(searchEntry.toLowerCase())
+            );
+
+            setSearchResults(results);
+        }catch(error){
+            console.error("Error fetching:", error);
         }
-
-        const allData = await response.json();
-        const results = allData.data.filter((entry: any) =>
-            entry.name.toLowerCase().includes(searchEntry.toLowerCase())
-        );
-
-        setSearchResults(results);
-    }catch(error){
-        console.error("Error fetching:", error);
     }
-}
 }
 
 
