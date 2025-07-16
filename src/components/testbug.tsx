@@ -25,15 +25,14 @@ const MainPage: React.FC = () =>{
             <div id="search-results">
                 {searchResults.map(r => (
                     <div key={r.id}>
-                        <h1>{r.name.charAt(0).toUpperCase()}{r?.name.slice(1)}</h1>
+                        <h1>{r?.name.charAt(0).toUpperCase()}{r?.name.slice(1)}</h1>
                         <img src={r?.image}/>
                         <h4>Common locations</h4>
                         <ul>
-                            {r.common_locations?.map(location => (<li>{location}</li>))}
+                            {r?.common_locations.map(location => (<li>{location}</li>))}
                         </ul>
                         <h4>Description</h4>
-                        <p>{r.description}</p>
-                        <hr/>
+                        <p>{r?.description}</p>
                     </div>
                 ))}
             </div>
