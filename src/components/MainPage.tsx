@@ -4,21 +4,19 @@ import "../styles/MainPage.css"
 const MainPage: React.FC = () =>{
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [searchResults, setSearchResults] = useState<{id: number; name: string; image: string; category: string; drops: string[]; common_locations: string[]; description: string}[]>([]);
-    const [searchResult, setSearchResult] = useState<{id: number; name: string; image: string; category: string; drops: []; common_locations: []; description: string}>();
-    const [data, setData] = useState();
-    const [error, setError] = useState('');
 
     return (
         <div>
-            <div id="container header">
+            <div id="header">
                 <div id="column">
-                    <input id='search-input'
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button onClick={() => getSearchResults(searchTerm)}>
-                        Search
-                    </button>
-                    <h3>{searchTerm}</h3>
+                    <form onSubmit={(e) => {e.preventDefault();getSearchResults(searchTerm);}}>
+                        <input id='search-input'
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button onClick={() => getSearchResults(searchTerm)}>
+                            Search
+                        </button>
+                    </form>
                 </div>
             </div>
 
