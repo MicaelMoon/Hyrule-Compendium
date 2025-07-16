@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import "../styles/MainPage.css"
+import SearchResultsPage from './SeaerchResultsPage';
 
 const MainPage: React.FC = () =>{
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -19,22 +20,7 @@ const MainPage: React.FC = () =>{
                     </form>
                 </div>
             </div>
-
-            <div id="search-results">
-                {searchResults.map(r => (
-                    <div key={r.id}>
-                        <h1>{r.name.charAt(0).toUpperCase()}{r?.name.slice(1)}</h1>
-                        <img src={r?.image}/>
-                        <h4>Common locations</h4>
-                        <ul>
-                            {r.common_locations?.map(location => (<li>{location}</li>))}
-                        </ul>
-                        <h4>Description</h4>
-                        <p>{r.description}</p>
-                        <hr/>
-                    </div>
-                ))}
-            </div>
+            <SearchResultsPage searchResults={searchResults}/>
         </div>
     )
 
