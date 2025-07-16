@@ -1,9 +1,21 @@
-.container{
+/* MainPage.css */
+
+#header {
     display: flex;
-    flex-direction: row;
-    margin-left: 200px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color:darkslategrey;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.column{
-    flex: 1;
-    margin-top: 200px;
+
+#search-input {
+    padding: 0.5rem;
+    font-size: 1rem;
 }
